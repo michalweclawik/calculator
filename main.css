@@ -9,16 +9,21 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   background-color: antiquewhite;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.calculator {
+  height: 75%;
+  width: 30%;
+}
+
 .calculator__display {
-  width: 100%;
-  height: 15vh;
+  height: 20%;
   background-color: lightcoral;
   color: white;
   word-break: break-all;
@@ -39,9 +44,8 @@ body {
 }
 
 .calculator__body {
-  height: 60vh;
-  min-width: 370px;
-  max-width: 370px;
+  height: 80%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);

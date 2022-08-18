@@ -21,12 +21,18 @@ calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
 
 function listNumbers(event) {
-  console.log("clicked");
-  console.log(event.target.innerHTML);
-  if (this.textContent === '.' && currentNumber.innerHTML.includes('.')) return;
-  if (this.textContent === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '0.';
+  // console.log("clicked")
+  // console.log(event.target.innerHTML)
   var currentNUmber = event.target.innerHTML;
-  currentNumber.innerHTML += currentNUmber;
+  console.log(currentNUmber);
+  if (currentNUmber === '.' && currentNumber.innerHTML.includes('.')) return;
+  if (currentNUmber === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '0.';
+
+  if (currentNumber.innerHTML.length < 8) {
+    return currentNumber.innerHTML += currentNUmber;
+  } else {
+    return currentNumber.innerHTML;
+  }
 }
 
 function operatorFunction(event) {
@@ -52,24 +58,27 @@ function getResult() {
   if (previousNum === '' || currentNumber.innerHTML === '') return;
   var a = Number(currentNumber.innerHTML);
   var b = Number(previousNum);
+  var testResult = Number();
 
   switch (sign) {
     case '+':
-      currentNumber.innerHTML = a + b;
+      testResult.innerHTML = a + b;
       break;
 
     case '-':
-      currentNumber.innerHTML = b - a;
+      testResult.innerHTML = b - a;
       break;
 
     case '*':
-      currentNumber.innerHTML = a * b;
+      testResult.innerHTML = a * b;
       break;
 
     case '/':
-      currentNumber.innerHTML = b / a;
+      testResult.innerHTML = b / a;
       break;
   }
+
+  console.log(testResult);
 }
 
 function clearAll() {
