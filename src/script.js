@@ -1,15 +1,18 @@
+// query selector to store number which is on display
+
 const currentNumber = document.querySelector('.currentNumber');
 
+// query selector to store numbers from calculator 1-9 plus .
 const calculatorNumbers = document.querySelectorAll('.calculator__number');
-
+// // query selector to store operating signs 
 const calculatorOperators = document.querySelectorAll('.calculator__operator');
-
+// query selector to store number which is on display
 const calculatorOutput = document.querySelector('.calculator__output');
 
 const calculatorAc = document.querySelector('.calculator__AC');
 
 
-let result = '';
+
 let previousNum = '';
 let sign = ''
 
@@ -76,20 +79,20 @@ function getResult() {
 
     switch (sign) {
         case '+':
-            result = a + b;
+            currentNumber.innerHTML = a + b;
             break;
         case '-':
-            result = b - a;
+            currentNumber.innerHTML = b - a;
             break;
         case '*':
-            result = a * b;
+            currentNumber.innerHTML = a * b;
             break;
         case '/':
-            result = b / a;
+            currentNumber.innerHTML = b / a;
             break;
 
     }
-    currentNumber.innerHTML = result;
+
 
 }
 

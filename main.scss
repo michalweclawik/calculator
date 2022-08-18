@@ -19,16 +19,12 @@ body {
 }
 
 
-.calculator__body {
-    height: 60vh;
-    min-width: 370px;
-    max-width: 370px;
-}
+
 
 
 .calculator__display {
     width: 100%;
-    height: 50px;
+    height: 15vh;
     background-color: lightcoral;
     color: white;
     word-break: break-all;
@@ -38,26 +34,20 @@ body {
     justify-content: space-between;
     padding-right: 5px;
     font-weight: bold;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    margin-bottom: 3px;
 }
 
 .currentNumber {
-    font-size: 35px;
-
+    font-size: 10vh;
 }
-
-
-.previousNumber {
-    color: rgb(182, 182, 182);
-    font-size: 20px;
-}
-
-.mathSign {
-    font-size: 22px;
-}
-
 
 .calculator__body {
-    height: 80%;
+    height: 60vh;
+    min-width: 370px;
+    max-width: 370px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -70,8 +60,6 @@ body {
     color: white;
     cursor: pointer;
 }
-
-
 
 button:hover {
     background-color: rgba(0, 0, 0, 0.546);
