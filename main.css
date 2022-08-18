@@ -1,43 +1,73 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  min-height: 100vh;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator__body {
+  height: 60vh;
+  min-width: 370px;
+  max-width: 370px;
+}
+
+.calculator__display {
+  width: 100%;
+  height: 50px;
+  background-color: lightcoral;
+  color: white;
+  word-break: break-all;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.currentNumber {
+  font-size: 35px;
+}
+
+.previousNumber {
+  color: #b6b6b6;
   font-size: 20px;
-  background-color: blanchedalmond;
+}
+
+.mathSign {
+  font-size: 22px;
+}
+
+.calculator__body {
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.calculator__body button {
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.466);
+  color: white;
+  cursor: pointer;
 }
 
 button:hover {
-  opacity: 1;
-  background-color: darkgray;
+  background-color: rgba(0, 0, 0, 0.546);
 }
 
-.calculator {
-  margin: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 50px);
-  grid-template-rows: repeat 6, 50px;
-  opacity: 0.8;
-  row-gap: 5px;
-  column-gap: 2.5px;
-  width: fit-content;
-  height: auto;
-  border: 2px solid black;
-  padding: 10px;
-  justify-content: center;
-  align-content: center;
-}
-.calculator__result {
-  grid-column: 1/5;
-  background-color: gray;
-  color: azure;
-  border: 2px solid red;
-  height: 20px;
-  display: flex;
-  flex-direction: column;
-}
 .calculator__output {
   grid-column: 1/5;
 }
