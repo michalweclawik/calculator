@@ -65,7 +65,7 @@ function operatorFunction(event) {
     else if (currentNumber.innerHTML === '') {
         return;
     }
-    //  if want to keep adds values 
+    //  if want to keep calculating
     if (sign !== '') {
         getResult();
     }
