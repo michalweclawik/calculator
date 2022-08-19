@@ -1,43 +1,52 @@
 // query selector to store number which is on display
 
 const currentNumber = document.querySelector('.currentNumber');
-
 // query selector to store numbers from calculator 1-9 plus .
 const calculatorNumbers = document.querySelectorAll('.calculator__number');
 // // query selector to store operating signs 
 const calculatorOperators = document.querySelectorAll('.calculator__operator');
 // query selector to store number which is on display
 const calculatorOutput = document.querySelector('.calculator__output');
-
 const calculatorAc = document.querySelector('.calculator__AC');
 
+const delButton = document.querySelector('.delButton')
 
 
 let previousNum = '';
-let sign = ''
+let sign = '';
 
 
-calculatorNumbers.forEach((button) => button.addEventListener('click', listNumbers))
+calculatorNumbers.forEach((button) => button.addEventListener('click', listNumbers));
+
 calculatorOperators.forEach((button) => button.addEventListener('click', operatorFunction))
 
 
 
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
+delButton.addEventListener('click', backspace);
 
 
+function backspace() {
 
+    if (currentNumber.innerHTML === '') return;
+    let current = [...currentNumber.innerHTML];
+    console.log(current);
+    current.pop();
+    current = current.join("");
+    currentNumber.innerHTML = current;
 
+}
 
 
 
 function listNumbers(event) {
-
     // console.log("clicked")
     // console.log(event.target.innerHTML)
 
+
     let currentNUmber = event.target.innerHTML;
-    console.log(currentNUmber)
+    // console.log(currentNUmber)
 
     if (currentNUmber === '.' && currentNumber.innerHTML.includes('.')) return;
     if (currentNUmber === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '0.';
@@ -48,11 +57,6 @@ function listNumbers(event) {
         return currentNumber.innerHTML
     }
 }
-
-
-
-
-
 
 
 function operatorFunction(event) {
@@ -76,37 +80,36 @@ function operatorFunction(event) {
 }
 
 
-
-
-
 function getResult() {
     if (previousNum === '' || currentNumber.innerHTML === '') return;
 
     let a = Number(currentNumber.innerHTML);
     let b = Number(previousNum);
-    let testResult = Number()
+    let testResult = '';
 
     switch (sign) {
         case '+':
-            testResult.innerHTML = a + b;
+            testResult = b + a;
             break;
         case '-':
-            testResult.innerHTML = b - a;
+            testResult = b - a;
             break;
         case '*':
-            testResult.innerHTML = a * b;
+            testResult = a * b;
             break;
         case '/':
-            testResult.innerHTML = b / a;
+            testResult = b / a;
             break;
 
     }
-    console.log(testResult)
+    console.log(typeof testResult);
+
+    return toString(testResult).length < 8 ? currentNumber.innerHTML = "error" : currentNumber.innerHTML = testResult;
 
 }
 
 function clearAll() {
-    result = '';
+
     currentNumber.innerHTML = '';
     previousNum = '';
     sign = '';

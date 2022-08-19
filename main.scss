@@ -1,5 +1,5 @@
 html {
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -8,7 +8,6 @@ html {
     box-sizing: border-box;
 }
 
-
 body {
     height: 100vh;
     width: 100vw;
@@ -16,19 +15,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .calculator {
-    height: 75%;
-    width: 30%;
-
+    height: 50%;
+    width: 80%;
 }
 
-
-
 .calculator__display {
-    height: 20%;
+    height: 15%;
     background-color: lightcoral;
     color: white;
     word-break: break-all;
@@ -44,8 +39,12 @@ body {
     margin-bottom: 3px;
 }
 
-.currentNumber {
-    font-size: 10vh;
+
+.calculator__display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 50px;
 }
 
 .calculator__body {
@@ -62,6 +61,7 @@ body {
     background-color: rgba(0, 0, 0, 0.466);
     color: white;
     cursor: pointer;
+
 }
 
 button:hover {
@@ -69,6 +69,7 @@ button:hover {
 }
 
 .calculator__output {
-
     grid-column: 1/5;
 }
+
+@media and {}
