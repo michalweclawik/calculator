@@ -37,24 +37,19 @@ section {
         color: white;
         word-break: break-all;
         text-align: right;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         padding-right: 5px;
         font-weight: bold;
         border-top: 2px solid black;
         border-left: 2px solid black;
         border-right: 2px solid black;
         margin-bottom: 3px;
-    }
-
-
-    &__display {
         display: flex;
         justify-content: flex-end;
-        align-items: flex-end;
         font-size: 50px;
     }
+
+
+
 
     &__body {
         height: 80%;
