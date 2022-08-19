@@ -5,40 +5,31 @@ const currentNumber = document.querySelector('.currentNumber');
 const calculatorNumbers = document.querySelectorAll('.calculator__number');
 // // query selector to store operating signs 
 const calculatorOperators = document.querySelectorAll('.calculator__operator');
-// query selector to store number which is on display
+// query selector to get answer
 const calculatorOutput = document.querySelector('.calculator__output');
+// query selector to chain AC
 const calculatorAc = document.querySelector('.calculator__AC');
-
+// query selector to chain DEL
 const delButton = document.querySelector('.delButton')
-
 
 let previousNum = '';
 let sign = '';
 
-
+// arrays
 calculatorNumbers.forEach((button) => button.addEventListener('click', listNumbers));
 
 calculatorOperators.forEach((button) => button.addEventListener('click', operatorFunction))
 
 
-
+// sigle buttons
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
 delButton.addEventListener('click', backspace);
 
 
-function backspace() {
-
-    if (currentNumber.innerHTML === '') return;
-    let current = [...currentNumber.innerHTML];
-    console.log(current);
-    current.pop();
-    current = current.join("");
-    currentNumber.innerHTML = current;
-
-}
 
 
+// listing digit on display
 
 function listNumbers(event) {
     // console.log("clicked")
@@ -47,11 +38,12 @@ function listNumbers(event) {
 
     let currentNUmber = event.target.innerHTML;
     // console.log(currentNUmber)
-
+    // condition to check dot
     if (currentNUmber === '.' && currentNumber.innerHTML.includes('.')) return;
     if (currentNUmber === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '0.';
 
-    if (currentNumber.innerHTML.length < 8) {
+    // control number of digits 
+    if (currentNumber.innerHTML.length < 11) {
         return currentNumber.innerHTML += currentNUmber;
     } else {
         return currentNumber.innerHTML
@@ -61,10 +53,11 @@ function listNumbers(event) {
 
 function operatorFunction(event) {
 
-
+    // trap current number 
     previousNum = currentNumber.innerHTML;
+    // trap logical operator 
     sign = event.target.innerHTML;
-    console.log(sign)
+    // console.log(sign)
 
     if (currentNumber.innerHTML === '' && sign === '-') {
         currentNumber.innerHTML = '-';
@@ -83,9 +76,10 @@ function operatorFunction(event) {
 function getResult() {
     if (previousNum === '' || currentNumber.innerHTML === '') return;
 
+
     let a = Number(currentNumber.innerHTML);
     let b = Number(previousNum);
-    let testResult = '';
+    let testResult = Number();
 
     switch (sign) {
         case '+':
@@ -100,11 +94,27 @@ function getResult() {
         case '/':
             testResult = b / a;
             break;
-
     }
-    console.log(typeof testResult);
 
-    return toString(testResult).length < 8 ? currentNumber.innerHTML = "error" : currentNumber.innerHTML = testResult;
+
+    // this is number 
+    // console.log(typeof testResult)
+    let message = "error"
+    if (testResult < 99999999999) {
+        currentNumber.innerHTML = testResult
+    }
+    return currentNumber.innerHTML = message;
+
+
+    // let result = toString(testResult)
+    // // this is string 
+    // console.log(typeof result)
+
+    // console.log(result.length)
+    return currentNumber.innerHTML = testResult
+
+    console.log(testResult)
+    // return testResult > 999999999 ? currentNumber.innerHTML = message : currentNumber.innerHTML = testResult;
 
 }
 
@@ -113,5 +123,17 @@ function clearAll() {
     currentNumber.innerHTML = '';
     previousNum = '';
     sign = '';
+    testResult = '';
+
+}
+
+function backspace() {
+
+    if (currentNumber.innerHTML === '') return;
+    let current = [...currentNumber.innerHTML];
+    console.log(current);
+    current.pop();
+    current = current.join("");
+    currentNumber.innerHTML = current;
 
 }

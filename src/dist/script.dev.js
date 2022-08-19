@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -15,43 +13,37 @@ var currentNumber = document.querySelector('.currentNumber'); // query selector 
 
 var calculatorNumbers = document.querySelectorAll('.calculator__number'); // // query selector to store operating signs 
 
-var calculatorOperators = document.querySelectorAll('.calculator__operator'); // query selector to store number which is on display
+var calculatorOperators = document.querySelectorAll('.calculator__operator'); // query selector to get answer
 
-var calculatorOutput = document.querySelector('.calculator__output');
-var calculatorAc = document.querySelector('.calculator__AC');
+var calculatorOutput = document.querySelector('.calculator__output'); // query selector to chain AC
+
+var calculatorAc = document.querySelector('.calculator__AC'); // query selector to chain DEL
+
 var delButton = document.querySelector('.delButton');
 var previousNum = '';
-var sign = '';
+var sign = ''; // arrays
+
 calculatorNumbers.forEach(function (button) {
   return button.addEventListener('click', listNumbers);
 });
 calculatorOperators.forEach(function (button) {
   return button.addEventListener('click', operatorFunction);
-});
+}); // sigle buttons
+
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
-delButton.addEventListener('click', backspace);
-
-function backspace() {
-  if (currentNumber.innerHTML === '') return;
-
-  var current = _toConsumableArray(currentNumber.innerHTML);
-
-  console.log(current);
-  current.pop();
-  current = current.join("");
-  currentNumber.innerHTML = current;
-}
+delButton.addEventListener('click', backspace); // listing digit on display
 
 function listNumbers(event) {
   // console.log("clicked")
   // console.log(event.target.innerHTML)
   var currentNUmber = event.target.innerHTML; // console.log(currentNUmber)
+  // condition to check dot
 
   if (currentNUmber === '.' && currentNumber.innerHTML.includes('.')) return;
-  if (currentNUmber === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '0.';
+  if (currentNUmber === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '0.'; // control number of digits 
 
-  if (currentNumber.innerHTML.length < 8) {
+  if (currentNumber.innerHTML.length < 11) {
     return currentNumber.innerHTML += currentNUmber;
   } else {
     return currentNumber.innerHTML;
@@ -59,9 +51,10 @@ function listNumbers(event) {
 }
 
 function operatorFunction(event) {
-  previousNum = currentNumber.innerHTML;
-  sign = event.target.innerHTML;
-  console.log(sign);
+  // trap current number 
+  previousNum = currentNumber.innerHTML; // trap logical operator 
+
+  sign = event.target.innerHTML; // console.log(sign)
 
   if (currentNumber.innerHTML === '' && sign === '-') {
     currentNumber.innerHTML = '-';
@@ -81,7 +74,7 @@ function getResult() {
   if (previousNum === '' || currentNumber.innerHTML === '') return;
   var a = Number(currentNumber.innerHTML);
   var b = Number(previousNum);
-  var testResult = '';
+  var testResult = Number();
 
   switch (sign) {
     case '+':
@@ -99,14 +92,39 @@ function getResult() {
     case '/':
       testResult = b / a;
       break;
+  } // this is number 
+  // console.log(typeof testResult)
+
+
+  var message = "error";
+
+  if (testResult < 99999999999) {
+    currentNumber.innerHTML = testResult;
   }
 
-  console.log(_typeof(testResult));
-  return toString(testResult).length < 8 ? currentNumber.innerHTML = "error" : currentNumber.innerHTML = testResult;
+  return currentNumber.innerHTML = message; // let result = toString(testResult)
+  // // this is string 
+  // console.log(typeof result)
+  // console.log(result.length)
+
+  return currentNumber.innerHTML = testResult;
+  console.log(testResult); // return testResult > 999999999 ? currentNumber.innerHTML = message : currentNumber.innerHTML = testResult;
 }
 
 function clearAll() {
   currentNumber.innerHTML = '';
   previousNum = '';
   sign = '';
+  testResult = '';
+}
+
+function backspace() {
+  if (currentNumber.innerHTML === '') return;
+
+  var current = _toConsumableArray(currentNumber.innerHTML);
+
+  console.log(current);
+  current.pop();
+  current = current.join("");
+  currentNumber.innerHTML = current;
 }
