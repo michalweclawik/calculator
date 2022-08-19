@@ -32,7 +32,7 @@ calculatorOperators.forEach(function (button) {
 
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
-delButton.addEventListener('click', backspace); // listing digit on display
+delButton.addEventListener('click', backSpace); // listing digit on display
 
 function listNumbers(event) {
   // console.log("clicked")
@@ -102,6 +102,7 @@ function getResult() {
 
   console.log(testResult); // this is number 
   // console.log(typeof testResult)
+  // space control on display 
 
   var message = "error";
 
@@ -111,29 +112,24 @@ function getResult() {
     sign = '';
   } else {
     return currentNumber.innerHTML = message;
-  } // let result = toString(testResult)
-  // // this is string 
-  // console.log(typeof result)
-  // console.log(result.length)
+  } // return currentNumber.innerHTML = testResult
 
+} // AC function set variable to empty strings
 
-  return currentNumber.innerHTML = testResult;
-  console.log(testResult); // return testResult > 999999999 ? currentNumber.innerHTML = message : currentNumber.innerHTML = testResult;
-}
 
 function clearAll() {
   currentNumber.innerHTML = '';
   previousNum = '';
   sign = '';
-  testResult = '';
-}
+} //  backSpace fynction array operation 
 
-function backspace() {
+
+function backSpace() {
   if (currentNumber.innerHTML === '') return;
 
-  var current = _toConsumableArray(currentNumber.innerHTML);
+  var current = _toConsumableArray(currentNumber.innerHTML); // console.log(current);
 
-  console.log(current);
+
   current.pop();
   current = current.join("");
   currentNumber.innerHTML = current;

@@ -24,7 +24,7 @@ calculatorOperators.forEach((button) => button.addEventListener('click', operato
 // sigle buttons
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
-delButton.addEventListener('click', backspace);
+delButton.addEventListener('click', backSpace);
 
 
 
@@ -105,6 +105,8 @@ function getResult() {
     console.log(testResult)
     // this is number 
     // console.log(typeof testResult)
+
+    // space control on display 
     let message = "error"
     if (testResult < 99999999999) {
         currentNumber.innerHTML = testResult;
@@ -114,33 +116,25 @@ function getResult() {
         return currentNumber.innerHTML = message;
     }
 
+    // return currentNumber.innerHTML = testResult
 
-    // let result = toString(testResult)
-    // // this is string 
-    // console.log(typeof result)
 
-    // console.log(result.length)
-    return currentNumber.innerHTML = testResult
-
-    console.log(testResult)
-    // return testResult > 999999999 ? currentNumber.innerHTML = message : currentNumber.innerHTML = testResult;
 
 }
-
+// AC function set variable to empty strings
 function clearAll() {
 
     currentNumber.innerHTML = '';
     previousNum = '';
     sign = '';
-    testResult = '';
-
 }
 
-function backspace() {
+//  backSpace fynction array operation 
+function backSpace() {
 
     if (currentNumber.innerHTML === '') return;
     let current = [...currentNumber.innerHTML];
-    console.log(current);
+    // console.log(current);
     current.pop();
     current = current.join("");
     currentNumber.innerHTML = current;
