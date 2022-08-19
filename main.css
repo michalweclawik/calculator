@@ -12,16 +12,23 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: antiquewhite;
+  text-align: center;
+}
+
+section {
+  width: 400px;
+  height: 410px;
+  border: 2px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
 .calculator {
   height: 380px;
   width: 380px;
 }
-
 .calculator__display {
   height: 15%;
   background-color: lightcoral;
@@ -38,14 +45,12 @@ body {
   border-right: 2px solid black;
   margin-bottom: 3px;
 }
-
 .calculator__display {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   font-size: 50px;
 }
-
 .calculator__body {
   height: 80%;
   width: 100%;
@@ -54,16 +59,16 @@ body {
   grid-template-rows: repeat(5, 1fr);
   gap: 2px;
 }
-
 .calculator__body button {
   font-size: 25px;
-  background-color: rgba(0, 0, 0, 0.466);
+  background-color: rgba(24, 9, 9, 0.466);
   color: white;
   cursor: pointer;
+  border-color: azure;
 }
 
 button:hover {
-  background-color: rgba(0, 0, 0, 0.546);
+  background-color: rgba(24, 12, 12, 0.546);
 }
 
 .calculator__output {
