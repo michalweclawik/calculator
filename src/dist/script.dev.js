@@ -51,27 +51,33 @@ function listNumbers(event) {
 }
 
 function operatorFunction(event) {
-  // trap current number 
-  previousNum = currentNumber.innerHTML; // trap logical operator 
-
-  sign = event.target.innerHTML; // console.log(sign)
-
+  // console.log(sign)
+  // minus in front number 
   if (currentNumber.innerHTML === '' && sign === '-') {
     currentNumber.innerHTML = '-';
     return;
-  } else if (currentNumber.innerHTML === '') {
-    return;
-  }
+  } // check if current number is empty 
+  else if (currentNumber.innerHTML === '') {
+      return;
+    } //  if want to keep adds values 
+
 
   if (sign !== '') {
     getResult();
-  }
+  } // if we have operator trap current number 
+
+
+  previousNum = currentNumber.innerHTML; // trap logical operator 
+
+  sign = event.target.innerHTML; // reset number 
 
   currentNumber.innerHTML = '';
 }
 
 function getResult() {
-  if (previousNum === '' || currentNumber.innerHTML === '') return;
+  //  check if numbers been asign 
+  if (previousNum === '' || currentNumber.innerHTML === '') return; // math 
+
   var a = Number(currentNumber.innerHTML);
   var b = Number(previousNum);
   var testResult = Number();
@@ -92,20 +98,24 @@ function getResult() {
     case '/':
       testResult = b / a;
       break;
-  } // this is number 
-  // console.log(typeof testResult)
+  }
 
+  console.log(testResult); // this is number 
+  // console.log(typeof testResult)
 
   var message = "error";
 
   if (testResult < 99999999999) {
     currentNumber.innerHTML = testResult;
-  }
-
-  return currentNumber.innerHTML = message; // let result = toString(testResult)
+    previousNum = '';
+    sign = '';
+  } else {
+    return currentNumber.innerHTML = message;
+  } // let result = toString(testResult)
   // // this is string 
   // console.log(typeof result)
   // console.log(result.length)
+
 
   return currentNumber.innerHTML = testResult;
   console.log(testResult); // return testResult > 999999999 ? currentNumber.innerHTML = message : currentNumber.innerHTML = testResult;

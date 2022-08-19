@@ -53,30 +53,36 @@ function listNumbers(event) {
 
 function operatorFunction(event) {
 
-    // trap current number 
-    previousNum = currentNumber.innerHTML;
-    // trap logical operator 
-    sign = event.target.innerHTML;
-    // console.log(sign)
 
+
+    // console.log(sign)
+    // minus in front number 
     if (currentNumber.innerHTML === '' && sign === '-') {
         currentNumber.innerHTML = '-';
         return;
-    } else if (currentNumber.innerHTML === '') {
+    }
+    // check if current number is empty 
+    else if (currentNumber.innerHTML === '') {
         return;
     }
-
+    //  if want to keep adds values 
     if (sign !== '') {
         getResult();
     }
+    // if we have operator trap current number 
+    previousNum = currentNumber.innerHTML;
+    // trap logical operator 
+    sign = event.target.innerHTML;
+    // reset number 
     currentNumber.innerHTML = '';
 }
 
 
 function getResult() {
+    //  check if numbers been asign 
     if (previousNum === '' || currentNumber.innerHTML === '') return;
 
-
+    // math 
     let a = Number(currentNumber.innerHTML);
     let b = Number(previousNum);
     let testResult = Number();
@@ -96,14 +102,17 @@ function getResult() {
             break;
     }
 
-
+    console.log(testResult)
     // this is number 
     // console.log(typeof testResult)
     let message = "error"
     if (testResult < 99999999999) {
-        currentNumber.innerHTML = testResult
+        currentNumber.innerHTML = testResult;
+        previousNum = '';
+        sign = '';
+    } else {
+        return currentNumber.innerHTML = message;
     }
-    return currentNumber.innerHTML = message;
 
 
     // let result = toString(testResult)
