@@ -16,7 +16,6 @@ body {
   align-items: center;
 }
 body section {
-  background-color: antiquewhite;
   width: 400px;
   height: 410px;
   display: flex;
@@ -25,11 +24,11 @@ body section {
   background-color: black;
   border: 2px solid red;
 }
-body .calculator {
+body section .calculator {
   height: 380px;
   width: 380px;
 }
-body .calculator__display {
+body section .calculator__display {
   height: 15%;
   background-color: lightcoral;
   color: white;
@@ -45,7 +44,7 @@ body .calculator__display {
   justify-content: flex-end;
   font-size: 50px;
 }
-body .calculator__body {
+body section .calculator__body {
   height: 80%;
   width: 100%;
   display: grid;
@@ -53,16 +52,46 @@ body .calculator__body {
   grid-template-rows: repeat(5, 1fr);
   gap: 2px;
 }
-body .calculator__body button {
+body section .calculator__body button {
   font-size: 25px;
   background-color: rgba(24, 9, 9, 0.466);
   color: white;
   cursor: pointer;
   border-color: azure;
 }
-body button:hover {
+body section button:hover {
   background-color: rgba(24, 12, 12, 0.546);
 }
-body .calculator__output {
+body section .calculator__output {
   grid-column: 3/5;
+}
+body .history {
+  width: 150px;
+  height: 410px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid black;
+}
+body .history p {
+  margin: 8px auto;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 3px solid black;
+}
+body .history li:nth-child(odd) {
+  background-color: lightgrey;
+}
+body .history__list {
+  list-style: none;
+}
+body .history__item {
+  letter-spacing: 1px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 15px;
+  text-align: center;
+  align-items: center;
 }

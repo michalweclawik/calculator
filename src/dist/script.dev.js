@@ -19,16 +19,31 @@ var calculatorOutput = document.querySelector('.calculator__output'); // query s
 
 var calculatorAc = document.querySelector('.calculator__AC'); // query selector to chain DEL
 
-var delButton = document.querySelector('.delButton');
+var delButton = document.querySelector('.delButton'); // query selector for ul
+
+var historyList = document.querySelector(".history__list"); // query selector for li
+
+var historyItem = document.getElementsByClassName('.history__item');
 var previousNum = '';
-var sign = ''; // arrays
+var sign = '';
+var testResult = Number(); // arrays
 
 calculatorNumbers.forEach(function (button) {
   return button.addEventListener('click', listNumbers);
 });
 calculatorOperators.forEach(function (button) {
   return button.addEventListener('click', operatorFunction);
-}); // sigle buttons
+}); // historyItem.forEach((result) => result.addEventListener("click", (event) => {
+//     console.log("pressed")
+//     event.preventDefault();
+//     result.remove()
+// }))
+// function removeResult(event) {
+//     console.log("pressed")
+//     event.preventDefault();
+//     result.remove()
+// }
+// sigle buttons
 
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
@@ -51,10 +66,13 @@ function listNumbers(event) {
 }
 
 function operatorFunction(event) {
-  // console.log(sign)
+  // trap logical operator
+  sign = event.target.innerHTML; // console.log(sign)
   // minus in front number 
+
   if (currentNumber.innerHTML === '' && sign === '-') {
     currentNumber.innerHTML = '-';
+    sign = '';
     return;
   } // check if current number is empty 
   else if (currentNumber.innerHTML === '') {
@@ -68,8 +86,8 @@ function operatorFunction(event) {
 
 
   previousNum = currentNumber.innerHTML; // trap logical operator 
-
-  sign = event.target.innerHTML; // reset number 
+  // sign = event.target.innerHTML;
+  // reset number 
 
   currentNumber.innerHTML = '';
 }
@@ -80,7 +98,6 @@ function getResult() {
 
   var a = Number(currentNumber.innerHTML);
   var b = Number(previousNum);
-  var testResult = Number();
 
   switch (sign) {
     case '+':
@@ -98,22 +115,25 @@ function getResult() {
     case '/':
       testResult = b / a;
       break;
-  }
-
-  console.log(testResult); // this is number 
+  } // console.log(testResult)
+  // this is number 
   // console.log(typeof testResult)
   // space control on display 
 
-  var message = "error";
 
-  if (testResult < 99999999999) {
+  var message = "error";
+  var testResultString = testResult.toString();
+  console.log(testResultString);
+  console.log(testResultString.length);
+
+  if (testResultString.length < 12) {
     currentNumber.innerHTML = testResult;
+    moveToHistory();
     previousNum = '';
     sign = '';
   } else {
     return currentNumber.innerHTML = message;
-  } // return currentNumber.innerHTML = testResult
-
+  }
 } // AC function set variable to empty strings
 
 
@@ -133,4 +153,20 @@ function backSpace() {
   current.pop();
   current = current.join("");
   currentNumber.innerHTML = current;
+}
+
+function moveToHistory() {
+  //  add result to list 
+  // console.log("yo")
+  // first create element -> li under ul
+  var resultHistory = document.createElement("li");
+  resultHistory.innerHTML = "".concat(testResult); // assing class to listed item 
+
+  resultHistory.classList.add("history__item");
+  resultHistory.addEventListener('click', function (event) {
+    // remove the li that has been clicked
+    event.target.remove();
+  }); //  add ls to ul 
+
+  historyList.appendChild(resultHistory);
 }
