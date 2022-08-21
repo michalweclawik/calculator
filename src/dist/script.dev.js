@@ -21,9 +21,9 @@ var calculatorAc = document.querySelector('.calculator__AC'); // query selector 
 
 var delButton = document.querySelector('.delButton'); // query selector for ul
 
-var historyList = document.querySelector(".history__list"); // query selector for li
+var historyList = document.querySelector(".history__list"); // input box in progres
+// const input__box = document.querySelector(".input__box")
 
-var historyItem = document.getElementsByClassName('.history__item');
 var previousNum = '';
 var sign = '';
 var testResult = Number(); // arrays
@@ -33,17 +33,7 @@ calculatorNumbers.forEach(function (button) {
 });
 calculatorOperators.forEach(function (button) {
   return button.addEventListener('click', operatorFunction);
-}); // historyItem.forEach((result) => result.addEventListener("click", (event) => {
-//     console.log("pressed")
-//     event.preventDefault();
-//     result.remove()
-// }))
-// function removeResult(event) {
-//     console.log("pressed")
-//     event.preventDefault();
-//     result.remove()
-// }
-// sigle buttons
+}); // sigle buttons
 
 calculatorOutput.addEventListener('click', getResult);
 calculatorAc.addEventListener('click', clearAll);
@@ -66,10 +56,8 @@ function listNumbers(event) {
 }
 
 function operatorFunction(event) {
-  // trap logical operator
-  sign = event.target.innerHTML; // console.log(sign)
+  // console.log(sign)
   // minus in front number 
-
   if (currentNumber.innerHTML === '' && sign === '-') {
     currentNumber.innerHTML = '-';
     sign = '';
@@ -82,8 +70,10 @@ function operatorFunction(event) {
 
   if (sign !== '') {
     getResult();
-  } // if we have operator trap current number 
+  } // trap logical operator
 
+
+  sign = event.target.innerHTML; // trap current number 
 
   previousNum = currentNumber.innerHTML; // trap logical operator 
   // sign = event.target.innerHTML;
@@ -141,7 +131,7 @@ function clearAll() {
   currentNumber.innerHTML = '';
   previousNum = '';
   sign = '';
-} //  backSpace fynction array operation 
+} //  backSpace function array operation 
 
 
 function backSpace() {
@@ -159,14 +149,50 @@ function moveToHistory() {
   //  add result to list 
   // console.log("yo")
   // first create element -> li under ul
-  var resultHistory = document.createElement("li");
-  resultHistory.innerHTML = "".concat(testResult); // assing class to listed item 
+  var resultHistory = document.createElement("li"); // button to add coment in progress
+  // const buttonAddComent = document.createElement("button");
 
-  resultHistory.classList.add("history__item");
+  resultHistory.innerHTML = "".concat(testResult); // buttonAddComent.innerHTML = "addCom";
+  // assing class to listed item 
+
+  resultHistory.classList.add("history__item"); // buttonAddComent.classList.add("button")
+  //  add ls to ul 
+
+  historyList.appendChild(resultHistory); // resultHistory.appendChild(buttonAddComent);
+
   resultHistory.addEventListener('click', function (event) {
     // remove the li that has been clicked
-    event.target.remove();
-  }); //  add ls to ul 
+    // if (event.target = buttonAddComent.innerHTML) {
+    // console.log("buttin")
+    // createDescription()
+    // const input = document.createElement("input")
+    // input.classList.add("input__box");
+    // historyList.appendChild(input);
+    //     input.addEventListener('click', () => {
+    //         const description = input.value
+    //         const text = document.createElement("p")
+    //         text.innerHTML = description
+    //         text.classList.add("text");
+    //         resultHistory.appendChild(text);
+    //         console.log(description)
+    //     })
+    // }
+    if (event.target = resultHistory.innerHTML) {
+      event.target.remove();
+    }
 
-  historyList.appendChild(resultHistory);
-}
+    return;
+  });
+} // function createDescription() {
+//     const input = document.createElement("input")
+//     input.classList.add("input__box");
+//     historyList.appendChild(input);
+//     input.addEventListener('click', () => {
+//         const description = input.value
+//         const text = document.createElement("p")
+//         text.innerHTML = description
+//         text.classList.add("text");
+//         resultHistory.appendChild(text);
+//         console.log(description)
+//     })
+// }

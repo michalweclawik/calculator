@@ -13,8 +13,9 @@ const calculatorAc = document.querySelector('.calculator__AC');
 const delButton = document.querySelector('.delButton');
 // query selector for ul
 const historyList = document.querySelector(".history__list");
-// query selector for li
-const historyItem = document.getElementsByClassName('.history__item')
+// input box in progres
+// const input__box = document.querySelector(".input__box")
+
 
 let previousNum = '';
 let sign = '';
@@ -25,16 +26,7 @@ calculatorNumbers.forEach((button) => button.addEventListener('click', listNumbe
 
 calculatorOperators.forEach((button) => button.addEventListener('click', operatorFunction))
 
-// historyItem.forEach((result) => result.addEventListener("click", (event) => {
-//     console.log("pressed")
-//     event.preventDefault();
-//     result.remove()
-// }))
-// function removeResult(event) {
-//     console.log("pressed")
-//     event.preventDefault();
-//     result.remove()
-// }
+
 
 // sigle buttons
 calculatorOutput.addEventListener('click', getResult);
@@ -66,8 +58,7 @@ function listNumbers(event) {
 
 
 function operatorFunction(event) {
-    // trap logical operator
-    sign = event.target.innerHTML;
+
 
     // console.log(sign)
     // minus in front number 
@@ -84,7 +75,9 @@ function operatorFunction(event) {
     if (sign !== '') {
         getResult();
     }
-    // if we have operator trap current number 
+    // trap logical operator
+    sign = event.target.innerHTML;
+    // trap current number 
     previousNum = currentNumber.innerHTML;
     // trap logical operator 
     // sign = event.target.innerHTML;
@@ -149,7 +142,7 @@ function clearAll() {
     sign = '';
 }
 
-//  backSpace fynction array operation 
+//  backSpace function array operation 
 function backSpace() {
 
     if (currentNumber.innerHTML === '') return;
@@ -166,15 +159,69 @@ function moveToHistory() {
     // console.log("yo")
     // first create element -> li under ul
     const resultHistory = document.createElement("li");
+    // button to add coment in progress
+    // const buttonAddComent = document.createElement("button");
+
+
     resultHistory.innerHTML = `${testResult}`;
+    // buttonAddComent.innerHTML = "addCom";
+
 
     // assing class to listed item 
     resultHistory.classList.add("history__item");
+    // buttonAddComent.classList.add("button")
+    //  add ls to ul 
+    historyList.appendChild(resultHistory);
+    // resultHistory.appendChild(buttonAddComent);
+
 
     resultHistory.addEventListener('click', (event) => {
         // remove the li that has been clicked
-        event.target.remove()
+        // if (event.target = buttonAddComent.innerHTML) {
+        // console.log("buttin")
+        // createDescription()
+        // const input = document.createElement("input")
+
+        // input.classList.add("input__box");
+        // historyList.appendChild(input);
+
+
+        //     input.addEventListener('click', () => {
+        //         const description = input.value
+        //         const text = document.createElement("p")
+        //         text.innerHTML = description
+        //         text.classList.add("text");
+
+        //         resultHistory.appendChild(text);
+
+        //         console.log(description)
+        //     })
+        // }
+        if (event.target = resultHistory.innerHTML) {
+            event.target.remove()
+        }
+        return
     })
-    //  add ls to ul 
-    historyList.appendChild(resultHistory);
+
+
 }
+
+// function createDescription() {
+//     const input = document.createElement("input")
+
+//     input.classList.add("input__box");
+//     historyList.appendChild(input);
+
+
+//     input.addEventListener('click', () => {
+//         const description = input.value
+//         const text = document.createElement("p")
+//         text.innerHTML = description
+//         text.classList.add("text");
+
+//         resultHistory.appendChild(text);
+
+//         console.log(description)
+//     })
+
+// }
