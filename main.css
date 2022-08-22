@@ -103,3 +103,11 @@ body .history__item {
 .input__box {
   width: 150px;
 }
+
+@media screen and (min-width: 400px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}

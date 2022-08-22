@@ -131,4 +131,11 @@ body {
 }
 
 
-// @media screen and (max-width:400) {}
+@media screen and (min-width:400px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+}
