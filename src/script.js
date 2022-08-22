@@ -19,7 +19,8 @@ const historyList = document.querySelector(".history__list");
 
 let previousNum = '';
 let sign = '';
-let testResult = Number();
+let testResult = '';
+
 
 // arrays
 calculatorNumbers.forEach((button) => button.addEventListener('click', listNumbers));
@@ -58,10 +59,10 @@ function listNumbers(event) {
 
 
 function operatorFunction(event) {
-
+    // trap logical operator
 
     // console.log(sign)
-    // minus in front number 
+    // scenario minus in front number 
     if (currentNumber.innerHTML === '' && sign === '-') {
         currentNumber.innerHTML = '-';
         sign = '';
@@ -75,28 +76,30 @@ function operatorFunction(event) {
     //  if want to keep calculating
     if (sign !== '') {
         getResult();
-
     }
-    // trap logical operator
+
     sign = event.target.innerHTML;
+
+
+
+
+
     // trap current number 
     previousNum = currentNumber.innerHTML;
-    // trap logical operator 
-    // sign = event.target.innerHTML;
     // reset number 
     currentNumber.innerHTML = '';
 }
 
 
+
 function getResult() {
-    //  check if numbers been asign 
+    //  check if numbers been assign 
     if (previousNum === '' || currentNumber.innerHTML === '') return;
 
     // math 
     let a = Number(currentNumber.innerHTML);
     let b = Number(previousNum);
-
-
+    // switch
     switch (sign) {
         case '+':
             testResult = b + a;
@@ -112,24 +115,44 @@ function getResult() {
             break;
     }
 
-    // console.log(testResult)
-    // this is number 
-    // console.log(typeof testResult)
 
     // space control on display 
     let message = "error";
-    let testResultString = testResult.toString();
-    console.log(testResultString);
-    console.log(testResultString.length)
+    // control decimal and convert to string 
 
-    if (testResultString.length < 12) {
-        currentNumber.innerHTML = testResult;
+    let testResultFixed = parseFloat(Number(testResult).toFixed(3));
+
+    testResult = testResultFixed.toString();
+
+    // console.log(testResult)
+    // console.log(typeof testResult)
+
+    if (testResult.length < 12) {
+
+
         moveToHistory()
         previousNum = '';
         sign = '';
+        currentNumber.innerHTML = testResult;
+
     } else {
         return currentNumber.innerHTML = message;
     }
+
+    // let message = "error";
+    // let testResultString = testResult.toString();
+    // console.log(testResultString);
+    // console.log(testResultString.length)
+
+    // if (testResultString.length < 12) {
+    //     currentNumber.innerHTML = testResult;
+    //     moveToHistory()
+    //     previousNum = '';
+    //     sign = '';
+    // } else {
+    //     return currentNumber.innerHTML = message;
+    // }
+
 
 
 
@@ -157,48 +180,24 @@ function backSpace() {
 }
 
 function moveToHistory() {
+
     //  add result to list 
-    // console.log("yo")
+
     // first create element -> li under ul
     const resultHistory = document.createElement("li");
-    // button to add coment in progress
-    // const buttonAddComent = document.createElement("button");
 
-
+    // assign value
     resultHistory.innerHTML = `${testResult}`;
-    // buttonAddComent.innerHTML = "addCom";
-
 
     // assing class to listed item 
     resultHistory.classList.add("history__item");
-    // buttonAddComent.classList.add("button")
+
     //  add ls to ul 
     historyList.appendChild(resultHistory);
-    // resultHistory.appendChild(buttonAddComent);
 
-
+    // remove history 
     resultHistory.addEventListener('click', (event) => {
-        // remove the li that has been clicked
-        // if (event.target = buttonAddComent.innerHTML) {
-        // console.log("buttin")
-        // createDescription()
-        // const input = document.createElement("input")
 
-        // input.classList.add("input__box");
-        // historyList.appendChild(input);
-
-
-        //     input.addEventListener('click', () => {
-        //         const description = input.value
-        //         const text = document.createElement("p")
-        //         text.innerHTML = description
-        //         text.classList.add("text");
-
-        //         resultHistory.appendChild(text);
-
-        //         console.log(description)
-        //     })
-        // }
         if (event.target = resultHistory.innerHTML) {
             event.target.remove()
         }
@@ -207,23 +206,3 @@ function moveToHistory() {
 
 
 }
-
-// function createDescription() {
-//     const input = document.createElement("input")
-
-//     input.classList.add("input__box");
-//     historyList.appendChild(input);
-
-
-//     input.addEventListener('click', () => {
-//         const description = input.value
-//         const text = document.createElement("p")
-//         text.innerHTML = description
-//         text.classList.add("text");
-
-//         resultHistory.appendChild(text);
-
-//         console.log(description)
-//     })
-
-// }
