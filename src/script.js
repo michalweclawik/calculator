@@ -122,6 +122,8 @@ function getResult() {
 
     let testResultFixed = parseFloat(Number(testResult).toFixed(3));
 
+    console.log(testResult)
+
     testResult = testResultFixed.toString();
 
     // console.log(testResult)

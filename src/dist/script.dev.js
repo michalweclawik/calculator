@@ -109,6 +109,7 @@ function getResult() {
   var message = "error"; // control decimal and convert to string 
 
   var testResultFixed = parseFloat(Number(testResult).toFixed(3));
+  console.log(testResult);
   testResult = testResultFixed.toString(); // console.log(testResult)
   // console.log(typeof testResult)
 
