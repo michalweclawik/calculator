@@ -57,8 +57,9 @@ function listNumbers(event) {
 
 function operatorFunction(event) {
   // trap logical operator
-  // console.log(sign)
+  sign = event.target.innerHTML; // console.log(sign)
   // scenario minus in front number 
+
   if (currentNumber.innerHTML === '' && sign === '-') {
     currentNumber.innerHTML = '-';
     sign = '';
@@ -71,9 +72,8 @@ function operatorFunction(event) {
 
   if (sign !== '') {
     getResult();
-  }
+  } // trap current number 
 
-  sign = event.target.innerHTML; // trap current number 
 
   previousNum = currentNumber.innerHTML; // reset number 
 
