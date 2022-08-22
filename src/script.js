@@ -71,9 +71,11 @@ function operatorFunction(event) {
     else if (currentNumber.innerHTML === '') {
         return;
     }
+
     //  if want to keep calculating
     if (sign !== '') {
         getResult();
+
     }
     // trap logical operator
     sign = event.target.innerHTML;
