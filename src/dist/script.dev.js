@@ -57,11 +57,12 @@ function listNumbers(event) {
 
 function operatorFunction(event) {
   // trap logical operator
+  // sign = event.target.innerHTML;
   // console.log(sign)
   // scenario minus in front number 
-  if (currentNumber.innerHTML === '' && sign === '-') {
-    currentNumber.innerHTML = '-';
-    sign = '';
+  if (currentNumber.innerHTML === '' && event.target.innerHTML === '-') {
+    currentNumber.innerHTML = '-'; // sign = '';
+
     return;
   } // check if current number is empty 
   else if (currentNumber.innerHTML === '') {
@@ -85,7 +86,10 @@ function getResult() {
   if (previousNum === '' || currentNumber.innerHTML === '') return; // math 
 
   var a = Number(currentNumber.innerHTML);
-  var b = Number(previousNum); // switch
+  var b = Number(previousNum);
+  console.log(a);
+  console.log(b);
+  console.log(sign); // switch
 
   switch (sign) {
     case '+':
@@ -103,8 +107,9 @@ function getResult() {
     case '/':
       testResult = b / a;
       break;
-  } // space control on display 
+  }
 
+  console.log(testResult); // space control on display 
 
   var message = "error"; // control decimal and convert to string 
 
